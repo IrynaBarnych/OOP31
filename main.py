@@ -53,8 +53,7 @@ print(circle.radius) #fget=get_radius
 radius = 100
 print(circle.radius)
 del circle.radius
-print(circle.radius)
-
+#print(circle.radius)
 class MyClass:
     _x = None
 

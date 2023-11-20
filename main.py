@@ -1,75 +1,36 @@
-#функтори
-#метод __call__
+#Завдання 2
+#Створіть дескриптор для атрибуту, що зберігає
+#розмір файлу. Додайте можливість зберігати розмір
+#файлу в байтах, але представляти його у зручному для
+#читання форматі (наприклад, КБ або МБ).
 
-import time
-class Timer:
-    def __init__(self, func):
-        self.func = func
+class FileSizeDescriptor:
+    size_bytes = 0
 
-    def __call__(self, *args, **kwargs):
-        start = time.time()
-        print(f"Викликаємо функцію {self.func.__name__}")
-        result = self.func(*args, **kwargs)
-        end = time.time()
-        print(f"Функція виконувалася {end - start:.5f}" )
-        return result
+    def __get__(self, instance, owner):
+        print(self)
+        print(instance)
+        print(owner)
+        return self
 
-@Timer
-def summa():
-    return sum(range(1, 100000))
-
-print(summa())
-
-#property()
-class Circle:
-    def __init__(self, radius):
-        self._radius = radius
-
-    @property
-    def radius(self):
-        print("get_radius")
-        return self._radius
-
-    @radius.setter
-    def radius(self, value):
-        print("set_radius")
+    def __set__(self, instance, value):
         if value < 0:
-            raise ValueError("Значення радіусу не може бути меньше 0")
-        self._radius = value
+            raise ValueError("розмір файлу не меньше 0")
+        self.size_bytes = value
 
-    @radius.deleter
-    def radius(self):
-        print("delete_radius")
-        del self._radius
-
-    #radius = property(get_radius, set_radius, delete_radius)
-    #radius = radius.getter(get_radius)
-
-circle = Circle(10)
-#print(circle.get_radius())
-#circle.set_radius(100)
-#print(circle.get_radius())
-print(circle.radius) #fget=get_radius
-radius = 100
-print(circle.radius)
-del circle.radius
-#print(circle.radius)
-class MyClass:
-    _x = None
-
-    @property
-    def x(self):
-        return self._x
-
-    @x.setter
-    def x(self, value):
-        if value < 0:
-            self._x = 0
+    def formatted(self):
+        if self.size_bytes < 1024:
+            return f'{self.size_bytes} Б'
+        elif self.size_bytes < 1024 ** 2:
+            return f'{self.size_bytes / 1024} КБ'
+        elif self.size_bytes < 1024 ** 3:
+            return f'{self.size_bytes / 1024 ** 2} MБ'
         else:
-            self._x = value
+            return f'{self.size_bytes/ 1024 ** 3} ГБ'
 
-obj = MyClass()
-obj.x = 10  # Виведе: 10
-print(obj.x)
-obj.x = -5  # Виведе: 0
-print(obj.x)
+class File:
+    size = FileSizeDescriptor()
+
+file = File()
+file.size = 2033000000
+print(file.size.formatted())

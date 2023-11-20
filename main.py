@@ -1,17 +1,21 @@
 #функтори
 #метод __call__
-class MyFunctor():
-    def __init__(self):
-        self.counter = 0
-        self.suma = 0
-        print("Я ініціалізувався")
+
+import time
+class Timer:
+    def __init__(self, func):
+        self.func = func
 
     def __call__(self, *args, **kwargs):
-        self.counter += 1
-        self.suma = sum(args)
-        print("Сума аргументів", self.suma)
-        print(f"Екземпляр класу викликався {self.counter} разів")
-obj = MyFunctor()
-obj(1, 4, 6, 8, 6)
-obj()
-obj()
+        start = time.time()
+        print(f"Викликаємо функцію {self.func.__name__}")
+        result = self.func(*args, **kwargs)
+        end = time.time()
+        print(f"Функція виконувалася {end - start:.5f}" )
+        return result
+
+@Timer
+def summa():
+    return sum(range(1, 100000))
+
+print(summa())

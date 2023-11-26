@@ -18,6 +18,7 @@ class TemperatureDevice:
         else:
             print('Неприпустима температура')
 
+
 sensor = TemperatureDevice()
 
 sensor.temperature = 25

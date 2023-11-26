@@ -13,6 +13,7 @@ class Order:
     def get_order_number(self):
         return self._order_number
 
+
 order_instance = Order(12345, "John Doe", 100.0)
 print(order_instance.get_order_number())
 

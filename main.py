@@ -10,6 +10,7 @@ class Multiplier:
     def multiply(self, number):
         return number * self.coefficient
 
+
 multiplier_obj = Multiplier(5)
 result = multiplier_obj.multiply(10)
 print(result)

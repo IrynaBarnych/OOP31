@@ -21,6 +21,7 @@ person_info = Person("Тарас", 33)
 print(person_info.information())
 
 
+
 #Варіант 2
 
 class Person:

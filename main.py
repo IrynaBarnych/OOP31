@@ -10,12 +10,11 @@ class Order:
         self.customer_name = customer_name
         self.total_amount = total_amount
 
-    @property
-    def order_number(self):
+    def get_order_number(self):
         return self._order_number
 
 order_instance = Order(12345, "John Doe", 100.0)
-print(order_instance.order_number)
+print(order_instance.get_order_number())
 
 
 

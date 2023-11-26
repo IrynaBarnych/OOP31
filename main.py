@@ -1,11 +1,10 @@
-#Завдання 4
-#Створіть клас для представлення користувача з
-#атрибутами: ім'я та вік. Додайте властивості для
-#валідації віку користувача. Наприклад, вік повинен
-#бути у межах від 0 до 120.
+#Завдання 5
+#Створіть клас Multiplier, який при ініціалізації
+#отримує множник. Забезпечте можливість викликати
+#цей об'єкт з аргументом та повертати множене значення.
 
-class Person:
-    def __init__(self, name, age):
+class Multiplier:
+    def __init__(self, ):
         self.name = name
         self.age = age
 
@@ -18,43 +17,6 @@ class Person:
 
 
 person_info = Person("Тарас", 33)
-print(person_info.information())
-
-
-#Варіант 2
-
-class Person:
-    def __init__(self, name, age):
-        self._name = None
-        self._age = None
-        self.name = name
-        self.age = age
-
-    @property
-    def name(self):
-        return self._name
-
-    @name.setter
-    def name(self, value):
-        if not value.isalpha():
-            raise ValueError("Ім'я має складатися лише з букв!")
-        self._name = value
-
-    @property
-    def age(self):
-        return self._age
-
-    @age.setter
-    def age(self, value):
-        if not (0 <= value <= 120):
-            raise ValueError("Вік має бути в діапазоні від 0 до 120 років")
-        self._age = value
-
-    def information(self):
-        return f"Ім'я: {self.name}, Вік: {self.age}"
-
-
-person_info = Person("Віктор", 33)
 print(person_info.information())
 
 

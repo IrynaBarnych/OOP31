@@ -4,20 +4,15 @@
 #цей об'єкт з аргументом та повертати множене значення.
 
 class Multiplier:
-    def __init__(self, ):
-        self.name = name
-        self.age = age
+    def __init__(self, coefficient):
+        self.coefficient = coefficient
 
-    def information(self):
-        if not self.name.isalpha():
-            raise ValueError("Ім'я має складатися лише з букв!")
-        if not (0 <= self.age <= 120):
-            raise ValueError("Вік має бути в діапазоні від 0 до 120 років")
-        return f"Ім'я: {self.name}, Вік: {self.age}"
+    def multiply(self, number):
+        return number * self.coefficient
 
-
-person_info = Person("Тарас", 33)
-print(person_info.information())
+multiplier_obj = Multiplier(5)
+result = multiplier_obj.multiply(10)
+print(result)
 
 
 

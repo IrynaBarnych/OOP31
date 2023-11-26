@@ -35,7 +35,7 @@ class TextModifier:
         return self.text
 
 # Створення об'єкта класу TextModifier
-text_modifier = TextModifier("Hello, World!")
+text_modifier = TextModifier("H e l l o, W o r l d!")
 
 # Верхній регістр.
 text_modifier.to_upper()

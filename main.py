@@ -33,7 +33,6 @@ class Calculator:
             case "/": return self.divide(args[1], args[2])
             case _  : return "такої  операції немає"
 
-
 calcutate = Calculator()
 print(calcutate("+", 4, 2))
 print(calcutate("-", 4, 2))

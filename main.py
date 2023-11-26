@@ -1,36 +1,22 @@
-#Завдання 2
-#Створіть дескриптор для атрибуту, що зберігає
-#розмір файлу. Додайте можливість зберігати розмір
-#файлу в байтах, але представляти його у зручному для
-#читання форматі (наприклад, КБ або МБ).
+#Завдання 3
+#Створіть клас для представлення відомостей про
+#замовлення. Забезпечте, щоб номер замовлення був
+#тільки для читання за допомогою керованих атрибутів,
+#але його можна було переглядати.
 
-class FileSizeDescriptor:
-    size_bytes = 0
+class Order:
+    def __init__(self, order_number, customer_name, total_amount):
+        self._order_number = order_number
+        self.customer_name = customer_name
+        self.total_amount = total_amount
 
-    def __get__(self, instance, owner):
-        print(self)
-        print(instance)
-        print(owner)
-        return self
+    @property
+    def order_number(self):
+        return self._order_number
 
-    def __set__(self, instance, value):
-        if value < 0:
-            raise ValueError("розмір файлу не меньше 0")
-        self.size_bytes = value
+order_instance = Order(12345, "John Doe", 100.0)
+print(order_instance.order_number)
 
-    def formatted(self):
-        if self.size_bytes < 1024:
-            return f'{self.size_bytes} Б'
-        elif self.size_bytes < 1024 ** 2:
-            return f'{self.size_bytes / 1024} КБ'
-        elif self.size_bytes < 1024 ** 3:
-            return f'{self.size_bytes / 1024 ** 2} MБ'
-        else:
-            return f'{self.size_bytes/ 1024 ** 3} ГБ'
 
-class File:
-    size = FileSizeDescriptor()
 
-file = File()
-file.size = 2033000000
-print(file.size.formatted())
+

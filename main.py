@@ -34,6 +34,7 @@ class TextModifier:
     def get_result(self):
         return self.text
 
+
 # Створення об'єкта класу TextModifier
 text_modifier = TextModifier("H e l l o, W o r l d!")
 

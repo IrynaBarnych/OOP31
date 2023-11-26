@@ -47,15 +47,14 @@ class BankAccount:
         else:
             print('Некоректна сума для зарахування')
 
-# Приклад використання:
-account = BankAccount("John Doe", 1000)
-print(account.my_balance)  # Виведе "get_balance" та поточний баланс
+account = BankAccount("Тарас", 1000)
+print(account.my_balance)  # поточний баланс
 
-account.withdraw(500)      # Виведе "Знімання 500 грн." і зменшить баланс
-print(account.my_balance)  # Виведе "get_balance" та новий баланс
+account.withdraw(500)      # "Знімання 500 грн." і зменшить баланс
+print(account.my_balance)  # новий баланс
 
-account.deposit(200)       # Виведе "Зарахування 200 грн." і збільшить баланс
-print(account.my_balance)  # Виведе "get_balance" та новий баланс
+account.deposit(200)       # "Зарахування 200 грн." і збільшить баланс
+print(account.my_balance)  #  новий баланс
 
 
 

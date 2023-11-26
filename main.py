@@ -8,29 +8,54 @@
 # (наприклад, якщо гроші на рахунку є).
 
 class BankAccount:
-    def __int__(self, name, balance):
+    def __init__(self, name, balance):
         self.name = name
         self.__balance = balance
 
+    @property
     def get_balance(self):
         print('get_balance')
         return self.__balance
 
-    def set_balance(self, value):
-        print('set balance')
-        is not isinstance(value, (int, float)):
-            raise ValueError('Баланс має бути числом')
-        self.__balance == value
+    @property
+    def my_balance(self):
+        return self.__balance
 
-    def delete_balance(self):
+    @my_balance.setter
+    def my_balance(self, value):
+        print('set balance')
+        if not isinstance(value, (int, float)):
+            raise ValueError('Баланс має бути числом')
+        self.__balance = value
+
+    @my_balance.deleter
+    def my_balance(self):
         print('delete balance')
         del self.__balance
 
-    my_balance = property()
-    my_balance = my_balance.getter(get_balance)
-    my_balance = my_balance.setter(set_balance)
-    my_balance = my_balance.deleter(delete_balance)
-    balance = property(fget_balance,
-                       fset=set_balance,
-                       sdel=delete_balance)
+    def withdraw(self, amount):
+        if amount > 0 and amount <= self.__balance:
+            print(f'Знімання {amount} грн.')
+            self.__balance -= amount
+        else:
+            print('Недостатньо коштів для зняття')
+
+    def deposit(self, amount):
+        if amount > 0:
+            print(f'Зарахування {amount} грн.')
+            self.__balance += amount
+        else:
+            print('Некоректна сума для зарахування')
+
+# Приклад використання:
+account = BankAccount("John Doe", 1000)
+print(account.my_balance)  # Виведе "get_balance" та поточний баланс
+
+account.withdraw(500)      # Виведе "Знімання 500 грн." і зменшить баланс
+print(account.my_balance)  # Виведе "get_balance" та новий баланс
+
+account.deposit(200)       # Виведе "Зарахування 200 грн." і збільшить баланс
+print(account.my_balance)  # Виведе "get_balance" та новий баланс
+
+
 
